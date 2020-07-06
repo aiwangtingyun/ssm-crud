@@ -66,6 +66,7 @@
   <sql id="Base_Column_List">
     dept_id, dept_name
   </sql>
+
   <select id="selectByExample" parameterType="com.wang.crud.bean.DepartmentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -86,6 +87,13 @@
     from tbl_dept
     where dept_id = #{deptId,jdbcType=INTEGER}
   </select>
+  <select id="countByExample" parameterType="com.wang.crud.bean.DepartmentExample" resultType="java.lang.Long">
+    select count(*) from tbl_dept
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tbl_dept
     where dept_id = #{deptId,jdbcType=INTEGER}
@@ -96,6 +104,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+
   <insert id="insert" parameterType="com.wang.crud.bean.Department">
     insert into tbl_dept (dept_id, dept_name)
     values (#{deptId,jdbcType=INTEGER}, #{deptName,jdbcType=VARCHAR})
@@ -119,12 +128,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.wang.crud.bean.DepartmentExample" resultType="java.lang.Long">
-    select count(*) from tbl_dept
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
+
   <update id="updateByExampleSelective" parameterType="map">
     update tbl_dept
     <set>

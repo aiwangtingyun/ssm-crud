@@ -15,10 +15,10 @@ import java.util.UUID;
 
 /**
  * 测试dao层的工作
- *推荐Spring的项目就可以使用Spring的单元测试，可以自动注入我们需要的组件
- *1、导入SpringTest模块
- *2、@ContextConfiguration指定Spring配置文件的位置
- *3、直接autowired要使用的组件即可
+ * 推荐Spring的项目就可以使用Spring的单元测试，可以自动注入我们需要的组件
+ * 1、导入SpringTest模块
+ * 2、@ContextConfiguration指定Spring配置文件的位置
+ * 3、直接autowired要使用的组件即可
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
@@ -37,8 +37,8 @@ public class MapperTest {
     public void testCurd() {
 
         // 插入部门数据
-        // departmentMapper.insertSelective(new Department(null, "开发部"));
-        // departmentMapper.insertSelective(new Department(null, "测试部"));
+        departmentMapper.insertSelective(new Department(null, "开发部"));
+        departmentMapper.insertSelective(new Department(null, "测试部"));
 
         // 插入员工数据
         EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);

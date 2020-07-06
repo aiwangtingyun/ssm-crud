@@ -49,7 +49,8 @@
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-hover">
-                    <tr>
+                    <%-- 表头 --%>
+                    <tr class="info">
                         <th>#</th>
                         <th>empName</th>
                         <th>gender</th>
@@ -57,14 +58,15 @@
                         <th>deptName</th>
                         <th>操作</th>
                     </tr>
+                    <%-- 循环遍历生成表体 --%>
                     <c:forEach items="${pageInfo.list}" var="emp">
                     <tr>
-                        <th>${emp.empId}</th>
-                        <th>${emp.empName}</th>
-                        <th>${emp.gender=="M"?"男":"女"}</th>
-                        <th>${emp.email}</th>
-                        <th>${emp.department.deptName}</th>
-                        <th>
+                        <td>${emp.empId}</td>
+                        <td>${emp.empName}</td>
+                        <td>${emp.gender=="M"?"男":"女"}</td>
+                        <td>${emp.email}</td>
+                        <td>${emp.department.deptName}</td>
+                        <td>
                             <button class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 编辑
@@ -73,7 +75,7 @@
                                 <span class="glyphicon glyphicon-trash"></span>
                                 删除
                             </button>
-                        </th>
+                        </td>
                     </tr>
                     </c:forEach>
                 </table>
@@ -88,14 +90,16 @@
             <!-- 分页条信息 -->
             <div class="col-md-6">
                 <nav aria-label="Page navigation">
-                    <ul class="pagination">
+                    <ul class="pagination">、
+                        <%-- 首页 --%>
                         <li><a href="${APP_PATH }/emps?pn=1">首页</a></li>
+                        <%-- 判断是否显示前一页 --%>
                         <c:if test="${pageInfo.hasPreviousPage }">
                             <li><a href="${APP_PATH }/emps?pn=${pageInfo.pageNum-1}"
                                    aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
                             </a></li>
                         </c:if>
-
+                        <%-- 中间页码 --%>
                         <c:forEach items="${pageInfo.navigatepageNums }" var="page_Num">
                             <c:if test="${page_Num == pageInfo.pageNum }">
                                 <li class="active"><a href="#">${page_Num }</a></li>
@@ -103,13 +107,14 @@
                             <c:if test="${page_Num != pageInfo.pageNum }">
                                 <li><a href="${APP_PATH }/emps?pn=${page_Num }">${page_Num }</a></li>
                             </c:if>
-
                         </c:forEach>
+                        <%-- 判断是否有后一页 --%>
                         <c:if test="${pageInfo.hasNextPage }">
                             <li><a href="${APP_PATH }/emps?pn=${pageInfo.pageNum+1 }"
                                    aria-label="Next"> <span aria-hidden="true">&raquo;</span>
                             </a></li>
                         </c:if>
+                        <%-- 末页 --%>
                         <li><a href="${APP_PATH }/emps?pn=${pageInfo.pages}">末页</a></li>
                     </ul>
                 </nav>
