@@ -3,6 +3,7 @@ package com.wang.crud.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wang.crud.bean.Employee;
+import com.wang.crud.bean.Msg;
 import com.wang.crud.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     // 查询所有员工信息：分页查询
-    @RequestMapping(value = "/emps")
+    // @RequestMapping(value = "/emps")
     public String getEmps(
             @RequestParam(value = "pn", defaultValue = "1") Integer pn,
             Model model) {
@@ -40,5 +41,21 @@ public class EmployeeController {
         model.addAttribute("pageInfo", page);
 
         return "list";
+    }
+
+    // 查询所有员工信息, 返回 Json 数据方式
+    @ResponseBody
+    @RequestMapping(value = "/emps")
+    public Msg getEmpsWithJson(@RequestParam(value = "pn", defaultValue = "1") Integer pn) {
+        // 引入PageHelper分页插件,在查询之前只需要调用，传入页码，以及每页的大小
+        PageHelper.startPage(pn, 5);
+        // startPage后面紧跟的这个查询就是一个分页查询
+        List<Employee> employees = employeeService.getAll();
+
+        // 使用 pageInfo 包装查询后的结果，只需要将pageInfo交给页面就行了
+        // pageInfo 封装了详细的分页信息,包括有我们|查询出来的数据，传入连续显示的页数
+        PageInfo<Employee> pageInfo = new PageInfo<>(employees, 5);
+
+        return Msg.success().add("pageInfo", pageInfo);
     }
 }
