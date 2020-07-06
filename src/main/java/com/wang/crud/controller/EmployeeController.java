@@ -43,7 +43,10 @@ public class EmployeeController {
         return "list";
     }
 
-    // 查询所有员工信息, 返回 Json 数据方式
+    /**
+     * 查询所有员工信息, 返回 Json 数据方式
+     * ResponseBody 注解会把返回数据转为 JSon 数据，需要导入 jackson 包
+     */
     @ResponseBody
     @RequestMapping(value = "/emps")
     public Msg getEmpsWithJson(@RequestParam(value = "pn", defaultValue = "1") Integer pn) {

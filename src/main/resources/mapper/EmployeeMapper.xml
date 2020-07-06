@@ -98,7 +98,7 @@
     <if test="distinct">
       distinct
     </if>
-    <include refid="Base_Column_List" />
+    <include refid="WithBase_Column_List" />
     from tbl_emp e
     left join tbl_dept d on e.`d_id`=d.`dept_id`
     <if test="_parameter != null">
@@ -110,7 +110,7 @@
   </select>
   <select id="selectByPrimaryKeyWithDept" parameterType="java.lang.Integer" resultMap="WithDeptResultMap">
     select
-    <include refid="Base_Column_List" />
+    <include refid="WithBase_Column_List" />
     from tbl_emp e
     left join tbl_dept d on e.`d_id`=d.`dept_id`
     where emp_id = #{empId,jdbcType=INTEGER}

@@ -34,7 +34,7 @@ public class Msg {
     // 添加额外信息
     public Msg add(String key, Object value) {
         this.getExtend().put(key, value);
-        return this;
+        return this;    // 返回 this 使支持链式操作
     }
 
     public int getCode() {

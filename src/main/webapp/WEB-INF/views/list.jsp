@@ -1,12 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2020/7/5
-  Time: 23:38
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%--使用 Jsp 的 C 空间--%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -95,9 +92,11 @@
                         <li><a href="${APP_PATH }/emps?pn=1">首页</a></li>
                         <%-- 判断是否显示前一页 --%>
                         <c:if test="${pageInfo.hasPreviousPage }">
-                            <li><a href="${APP_PATH }/emps?pn=${pageInfo.pageNum-1}"
-                                   aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-                            </a></li>
+                            <li>
+                                <a href="${APP_PATH }/emps?pn=${pageInfo.pageNum-1}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
                         </c:if>
                         <%-- 中间页码 --%>
                         <c:forEach items="${pageInfo.navigatepageNums }" var="page_Num">
@@ -110,9 +109,11 @@
                         </c:forEach>
                         <%-- 判断是否有后一页 --%>
                         <c:if test="${pageInfo.hasNextPage }">
-                            <li><a href="${APP_PATH }/emps?pn=${pageInfo.pageNum+1 }"
-                                   aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-                            </a></li>
+                            <li>
+                                <a href="${APP_PATH }/emps?pn=${pageInfo.pageNum+1 }" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
                         </c:if>
                         <%-- 末页 --%>
                         <li><a href="${APP_PATH }/emps?pn=${pageInfo.pages}">末页</a></li>
