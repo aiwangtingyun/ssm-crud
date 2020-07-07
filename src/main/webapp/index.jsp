@@ -269,6 +269,8 @@
 
         // 点击新增按钮弹出模态框
         $("#emp_add_modal_btn").click(function () {
+            // 清空表单数据（表单完全重置：表单的数据，表单的样式）
+            rest_form("#empAddModal form");
             // 查旬部门信息，并显示在下拉列表中
             getDepts("#empAddModal select")
             // 弹出模态框
@@ -276,6 +278,15 @@
                 backdrop: "static"
             });
         });
+
+        // 清空表单所有样式和内容
+        function rest_form(ele) {
+            // 清空这个 DOM 树的数据: $(ele)[0] 表示整个元素的 DOM
+            $(ele)[0].reset();
+            // 清空表单样式表
+            $(ele).find("*").removeClass("has-error has-success");
+            $(ele).find(".help-block").text("");
+        }
         
         // 查出所有的部门信息,并显示在对应元素中
         function getDepts(ele) {
@@ -298,6 +309,107 @@
                 }
             });
         }
+
+        // 点击保存员工数据
+        $("#emp_save_btn").click(function () {
+            // 对要提交给服务器的数据进行前端校验
+            if (!validate_add_form()) {
+                return false;
+            }
+
+            // 判断用户名的 ajax 请求校验是否成功
+            if ($(this).attr("ajax-check") === "error") {
+                return false;
+            }
+
+            // 校验成功，发送 AJAX 请求保存员工数据
+            $.ajax({
+                url: "${APP_PATH}/save",
+                type: "POST",
+                data: $("#empAddModal form").serialize(),
+                success: function (result) {
+                    if (result.code === 100) {
+                        // 关闭模态框
+                        $("#empAddModal").modal("hide");
+                        // 跳转到最后一页显示刚才保存成功的数据
+                        toPage(totalRecord);
+                    } else {
+                        // 保存失败，显示对应字段的错误信息
+                        if (undefined !== result.extend.errorFields.email) {
+                            // 显示邮箱错误信息
+                            show_valid_msg("#email_add_input", "error", result.extend.errorFields.email);
+                        }
+                        if (undefined !== result.extend.errorFields.empName) {
+                            // 显示员工姓名错误信息
+                            show_valid_msg("#empName_add_input", "error", result.extend.errorFields.empName);
+                        }
+                    }
+                }
+            });
+        });
+
+        // 前端校验表单数据
+        function validate_add_form() {
+            // 校验姓名
+            var empName = $("#empName_add_input").val();
+            var regName = /(^[a-zA-Z0-9_-]{6,16}$)|(^[\u2E80-\u9FFF]{2,5})/;
+            if (!regName.test(empName)){
+                // alert("用户名可以是2-5位中文或者6-16位英文和数字的组合");
+                show_valid_msg("#empName_add_input", "error", "用户名必须是6-16位数字和字母的组合或者2-5位中文");
+                return false;
+            } else {
+                show_valid_msg("#empName_add_input", "success", "");
+            }
+
+            // 校验邮箱
+            var email = $("#email_add_input").val();
+            var regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+            if (!regEmail.test(email)) {
+                // alert("邮箱格式不正确");
+                show_valid_msg("#email_add_input", "error", "邮箱格式不正确");
+                return false;
+            } else {
+                show_valid_msg("#email_add_input", "error", "");
+            }
+
+            return true;
+        }
+        
+        // 显示校验结果的提示信息
+        function show_valid_msg(ele, status, msg) {
+            // 清空校验状态信息
+            $(ele).parent().removeClass("has-success has-error");
+            $(ele).next("span").text("");
+
+            if ("success" === status) {
+                $(ele).parent().addClass("has-success");
+            } else if ("error" === status) {
+                $(ele).parent().addClass("has-error");
+            }
+            $(ele).next("span").text(msg);
+        }
+
+        // 校验用户名是否可用
+        $("#empName_add_input").change(function () {
+            // 发送 AJAX 请求校验用户名是否可用
+            var empName = this.value;
+            $.ajax({
+                url: "${APP_PATH}/checkuser",
+                type: "POST",
+                data: "empName=" + empName,
+                success: function (result) {
+                    if (result.code === 100) {
+                        show_valid_msg("#empName_add_input", "success", result.extend.va_msg);
+                        // 给保存按钮添加校验属性表示可以点击保存
+                        $("#emp_save_btn").attr("ajax-check", "success");
+                    } else {
+                        show_valid_msg("#empName_add_input", "error", result.extend.va_msg);
+                        // 给保存按钮添加校验属性表示不可以点击保存
+                        $("#emp_save_btn").attr("ajax-check", "error");
+                    }
+                }
+            });
+        });
         
     </script>
 
