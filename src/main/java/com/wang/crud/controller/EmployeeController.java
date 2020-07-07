@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -65,7 +66,7 @@ public class EmployeeController {
     }
 
     /**
-     * 保存员工
+     * 保存员工，保存之前进行后端数据校验
      * 导入 Hibernate-Validator 进行 JSR303 校验
      * 使用 @Valid 对参数进行校验，然后返回 BindingResult 类型的结果
      */
@@ -93,7 +94,7 @@ public class EmployeeController {
     @ResponseBody
     @PostMapping(value = "/checkuser")
     public Msg checkuser(@RequestParam("empName") String empName) {
-        // 和前端保持一致，先校验用户名合法性
+        // 提示信息和前端保持一致，防止两次提示信息不一致
         String regx = "(^[a-zA-Z0-9_-]{6,16}$)|(^[\\u2E80-\\u9FFF]{2,5})";
         if (!empName.matches(regx)) {
             return Msg.failed().add("va_msg", "用户名必须是6-16位数字和字母的组合或者2-5位中文");
@@ -106,5 +107,54 @@ public class EmployeeController {
         } else {
             return Msg.failed().add("va_msg", "用户名不可用");
         }
+    }
+
+    // 根据员工ID查询员工信息
+    @ResponseBody
+    @GetMapping(value = "/emp/{id}")
+    public Msg getEmp(@PathVariable("id") Integer id) {
+        Employee emp = employeeService.getEmp(id);
+        return Msg.success().add("emp", emp);
+    }
+
+    /**
+     * 更新员工信息
+     * 如果直接发送 ajax=PUT 形式的请求
+     * 封装的数据：Employee = [empId=1014, empName=null, gender=null, email=null, dId=null]
+     *
+     * 问题：
+     * 请求体中有数据, 但是Employee对象封装不上：update tbl_emp  where emp_id = 1014;
+     *
+     * 原因：
+     * Tomcat：
+     *      1、将请求体中的数据，封装一个map。
+     *      2、request.getParameter("empName")就会从这个map中取值。
+     *      3、SpringMVC封装POJO对象的时候，会调用 request.getParamter("email") 赋给POJO中每个属性的值
+     *
+     * AJAX发送PUT请求引发的血案：
+     *      PUT请求，请求体中的数据，request.getParameter("empName")拿不到
+     *      Tomcat一看是PUT不会封装请求体中的数据为map，只有POST形式的请求才封装请求体为map
+     *
+     * Tomcat源码：
+     * org.apache.catalina.connector.Request--parseParameters() (3111);
+     * if( !getConnector().isParseBodyMethod(getMethod()) ) {
+     *      success = true;
+     *      return;
+     * }
+     *
+     * 解决方案：
+     * 我们要能支持直接发送PUT之类的请求还要封装请求体中的数据
+     * 1、配置上HttpPutFormContentFilter；
+     * 2、他的作用；将请求体中的数据解析包装成一个map。
+     * 3、request被重新包装，request.getParameter()被重写，就会从自己封装的map中取数据
+     *
+     */
+    @ResponseBody
+    @PutMapping(value = "/update/{empId}")
+    public Msg updateEmp(Employee employee, HttpServletRequest request) {
+        // System.out.println("请求体中的值：" + request.getParameter("emali"));
+        // System.out.println("将要更新的员工数据：" + employee);
+        employeeService.updateEmp(employee);
+        return Msg.success();
     }
 }
