@@ -334,7 +334,7 @@
         // 点击新增按钮弹出模态框
         $("#emp_add_modal_btn").click(function () {
             // 清空表单数据（表单完全重置：表单的数据，表单的样式）
-            rest_form("#empAddModal form");
+            reset_form("#empAddModal form");
             // 查旬部门信息，并显示在下拉列表中
             getDepts("#empAddModal select");
             // 弹出模态框
@@ -344,7 +344,7 @@
         });
 
         // 清空表单所有样式和内容
-        function rest_form(ele) {
+        function reset_form(ele) {
             // 清空这个 DOM 树的数据: $(ele)[0] 表示整个元素的 DOM
             $(ele)[0].reset();
             // 清空表单样式表
@@ -479,13 +479,15 @@
         // 解决办法为：1、在创建按钮的时候绑定；2、绑定点击 live()
         // jquery 新版没有 live，使用 on 进行替代
         $(document).on("click", ".edit-btn", function () {
-            // 1、查出部门信息，并显示部门列表
+            // 清空表单数据
+            reset_form("#empUpdateModal form");
+            // 查出部门信息，并显示部门列表
             getDepts("#empUpdateModal select");
-            // 2、查旬员工信息，并填充员工信息
+            // 查旬员工信息，并填充员工信息
             getEmp($(this).attr("edit-id"));
-            // 3、把员工ID传给修改模态框的更按钮
+            // 把员工ID传给修改模态框的更按钮
             $("#emp_update_btn").attr("edit-id", $(this).attr("edit-id"));
-            // 4、弹出修改模态框
+            // 弹出修改模态框
             $("#empUpdateModal").modal({
                 backdrop: "static"
             });
@@ -516,8 +518,6 @@
                 // alert("邮箱格式不正确");
                 show_valid_msg("#email_update_input", "error", "邮箱格式不正确");
                 return false;
-            } else {
-                show_valid_msg("#email_update_input", "error", "");
             }
 
             // 发送 Ajax 请求保存更新数据

@@ -17,7 +17,9 @@ public class EmployeeService {
 
     // 查询所有员工
     public List<Employee> getAll() {
-        return employeeMapper.selectByExampleWithDept(null);
+        EmployeeExample example = new EmployeeExample();
+        example.setOrderByClause("emp_id"); // 按员工ID排序
+        return employeeMapper.selectByExampleWithDept(example);
     }
 
     // 员工保存
