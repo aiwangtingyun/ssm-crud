@@ -22,6 +22,71 @@
     <script type="text/javascript" src="${APP_PATH}/static/bootstrap3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<!-- 员工添加的模态框 -->
+<div class="modal fade" id="empAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <%-- 模态框头部 --%>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">员工添加</h4>
+            </div>
+            <%-- 模态框主体 --%>
+            <div class="modal-body">
+                <%-- 表单元素的 name 属性需要和 employee 对象的属性名相对应 --%>
+                <form class="form-horizontal">
+                    <%--员工姓名--%>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">empName</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="empName" id="empName_add_input" class="form-control"
+                                   placeholder="empName">
+                            <span class="help-block"></span> <%--校验提示信息--%>
+                        </div>
+                    </div>
+                    <%--邮箱--%>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">email</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="email" class="form-control" id="email_add_input"
+                                   placeholder="email@google.com">
+                            <span class="help-block"></span> <%--校验提示信息--%>
+                        </div>
+                    </div>
+                    <%--性别--%>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">gender</label>
+                        <div class="col-sm-10">
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" id="gender1_add_input" value="M" checked="checked">男
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" id="gender2_add_input" value="F">女
+                            </label>
+                        </div>
+                    </div>
+                    <%--部门名--%>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">deptName</label>
+                        <div class="col-sm-4">
+                            <%--部门提交部门id即可--%>
+                            <select class="form-control" name="dId"></select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <%-- 模态框底部 --%>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="emp_save_btn">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- 搭建显示页面 -->
 <div class="container">
     <%-- 标题 --%>
@@ -34,7 +99,7 @@
     <%-- 按钮 --%>
     <div class="row">
         <div class="col-md-4 col-md-offset-8">
-            <button class="btn btn-primary">新增</button>
+            <button class="btn btn-primary" id="emp_add_modal_btn">新增</button>
             <button class="btn btn-danger">删除</button>
         </div>
     </div>
@@ -102,7 +167,7 @@
         // 解析并显示员工数据
         function build_emp_table(result) {
             // 清空先前的数据
-            $("#emps_table").empty();
+            $("#emps_table tbody").empty();
 
             var emps = result.extend.pageInfo.list;
 
@@ -127,7 +192,7 @@
                     .append(emailTd)
                     .append(deptNameTd)
                     .append(btnTd)
-                    .appendTo("#emps_table");
+                    .appendTo("#emps_table tbody");
             });
         }
         
@@ -137,8 +202,7 @@
             totalRecord = result.extend.pageInfo.total;
             var totalPages = result.extend.pageInfo.pages;
 
-            $("#page_info_area").empty();
-            $("#page_info_area").append("当前第 " + currentPage + " 页，总共 " + totalPages + " 页，总共 " +
+            $("#page_info_area").empty().append("当前第 " + currentPage + " 页，总共 " + totalPages + " 页，总共 " +
                     totalRecord + " 记录");
         }
 
@@ -153,7 +217,7 @@
             // 添加首页和上一页
             var firstPageLi = $("<li></li>").append($("<a></a>").append("首页").attr("href", "#"));
             var prePageLi = $("<li></li>").append($("<a></a>").append("&laquo;").attr("href", "#"));
-            if (result.extend.pageInfo.hasPreviousPage == false) {
+            if (result.extend.pageInfo.hasPreviousPage === false) {
                 firstPageLi.addClass("disabled");
                 prePageLi.addClass("disabled");
             } else {
@@ -170,7 +234,7 @@
             // 添加中间页码
             $.each(result.extend.pageInfo.navigatepageNums, function (index, pageNum) {
                 var pageNumLi = $("<li></li>").append($("<a></a>").append(pageNum).attr("href", "#"));
-                if (result.extend.pageInfo.pageNum == pageNum) {
+                if (result.extend.pageInfo.pageNum === pageNum) {
                     pageNumLi.addClass("active");
                 } else {
                     // 为元素添加点击事件
@@ -184,7 +248,7 @@
             // 添加末页和下一页
             var lastPageLi = $("<li></li>").append($("<a></a>").append("末页").attr("href", "#"));
             var nextPageLi = $("<li></li>").append($("<a></a>").append("&raquo;").attr("href", "#"));
-            if (result.extend.pageInfo.hasNextPage == false) {
+            if (result.extend.pageInfo.hasNextPage === false) {
                 lastPageLi.addClass("disabled");
                 nextPageLi.addClass("disabled");
             } else {
@@ -201,6 +265,38 @@
             // 把 ul 元素添加到 nav 元素中
             var navEle = $("<nav></nav>").append(navUl);
             navEle.appendTo("#page_nav_area")
+        }
+
+        // 点击新增按钮弹出模态框
+        $("#emp_add_modal_btn").click(function () {
+            // 查旬部门信息，并显示在下拉列表中
+            getDepts("#empAddModal select")
+            // 弹出模态框
+            $("#empAddModal").modal({
+                backdrop: "static"
+            });
+        });
+        
+        // 查出所有的部门信息,并显示在对应元素中
+        function getDepts(ele) {
+            // 先清空元素之前的数据
+            $(ele).empty();
+
+            // 发送 ajax 请求数据
+            $.ajax({
+                url: "${APP_PATH}/depts",
+                type: "GET",
+                success: function (result) {
+                    // {"code":100,"msg":"处理成功！","extend":
+                    // {"depts":[{"deptId":1,"deptName":"开发部"},{"deptId":2,"deptName":"测试部"}]}}
+                    // console.log(result);
+                    // 添加到下拉列表中
+                    $.each(result.extend.depts, function () {
+                        var optionEle = $("<option></option>").append(this.deptName).attr("value", this.deptId);
+                        optionEle.appendTo(ele);
+                    });
+                }
+            });
         }
         
     </script>
