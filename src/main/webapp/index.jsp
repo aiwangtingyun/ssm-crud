@@ -162,7 +162,7 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-8">
             <button class="btn btn-primary" id="emp_add_modal_btn">新增</button>
-            <button class="btn btn-danger">删除</button>
+            <button class="btn btn-danger" id="emp_delete_all_btn">删除</button>
         </div>
     </div>
 
@@ -173,6 +173,7 @@
                 <%-- 表头 --%>
                 <thead>
                     <tr class="info">
+                        <th><input type="checkbox" id="check_all"></th>
                         <th>#</th>
                         <th>empName</th>
                         <th>gender</th>
@@ -235,6 +236,7 @@
 
             // 遍历元素
             $.each(emps, function (index, emp) {
+                var checkBoxTd = $("<td><input type='checkbox' class='check_item'></td>");
                 var empIdTd = $("<td></td>").append(emp.empId);
                 var empNameTd = $("<td></td>").append(emp.empName);
                 var genderTd = $("<td></td>").append(emp.gender == "M" ? "男" : "女");
@@ -250,7 +252,8 @@
                 delBtn.attr("del-id", emp.empId);   // 绑定按钮ID为员工ID
                 var btnTd = $("<td></td>").append(editBtn).append(" ").append(delBtn);
 
-                $("<tr></tr>").append(empIdTd)
+                $("<tr></tr>").append(checkBoxTd)
+                    .append(empIdTd)
                     .append(empNameTd)
                     .append(genderTd)
                     .append(emailTd)
@@ -532,6 +535,60 @@
                     toPage(currentPage);
                 }
             });
+        });
+
+
+        // 点击单个删除
+        $(document).on("click", ".delete-btn", function () {
+            // 弹出确认删除对话框
+            var empName = $(this).parents("tr").find("td:eq(2)").text();
+            var empId = $(this).attr("del-id");
+
+            if (confirm("确认删除【"+ empName+"】?")){
+                // 发送 AJAX 请求删除数据
+                $.ajax({
+                    url: "${APP_PATH}/delete/" + empId,
+                    type: "DELETE",
+                    success: function (result) {
+                        alert(result.msg);
+                        // 返回本页
+                        toPage(currentPage);
+                    }
+                });
+            }
+        });
+
+        // 全选框
+        $("#check_all").click(function () {
+            // attr 获取 checked 是 undefined;
+            // 我们这些 dom 原生的属性：attr 获取的是自定义属性的值；
+            // 使用 prop 修改和读取 dom 原生属性的值
+            $(".check_item").prop("checked", $(this).prop("checked"));
+        });
+
+        // 单个勾选框
+        $(document).on("click", ".check_item", function () {
+            // 判断当前选中元素是否为全部元素
+            var flag = $(".check_item:checked").length === $(".check_item").length;
+            $("#check_all").prop("checked", flag);
+        });
+
+        // 批量删除
+        $("#emp_delete_all_btn").click(function () {
+            // 获取要删除的员工名和ID
+            var empNames = "";
+            var empIds = "";
+            $.each($(".check_item:checked"), function () {
+                empNames += $(this).parents("tr").find("td:eq(2)").text() + ",";
+                empIds += $(this).parents("tr").find("td:eq(1)").text() + "-";
+            });
+            // 去除多余的分割符
+            empNames = empNames.substring(0, empNames.length - 1);
+            empIds = empIds.substring(0, empIds.length - 1);
+
+            if(confirm("确认删除【"+empNames+"】吗？")){
+                // 发送
+            }
         });
 
     </script>

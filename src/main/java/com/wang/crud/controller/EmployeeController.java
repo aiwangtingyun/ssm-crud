@@ -157,4 +157,14 @@ public class EmployeeController {
         employeeService.updateEmp(employee);
         return Msg.success();
     }
+
+    /**
+     * 删除员工数据
+     */
+    @ResponseBody
+    @DeleteMapping(value = "/delete/{id}")
+    public Msg deleteEmp(@PathVariable("id") Integer id) {
+        employeeService.deleteEmp(id);
+        return Msg.success();
+    }
 }

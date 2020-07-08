@@ -7,8 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8624ded2-654d-44f7-be3b-abd3aa333ecd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/crud/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/crud/service/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/crud/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/crud/controller/EmployeeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -27,8 +26,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wang/crud/controller/EmployeeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="156" column="28" selection-start-line="156" selection-start-column="28" selection-end-line="156" selection-end-column="28" />
+            <state relative-caret-position="478">
+              <caret line="167" column="24" selection-start-line="167" selection-start-column="24" selection-end-line="167" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -36,14 +35,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wang/crud/service/EmployeeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="20" column="54" lean-forward="true" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
+            <state relative-caret-position="308">
+              <caret line="20" column="54" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#569#570#0" expanded="true" />
-                <element signature="e#625#626#0" expanded="true" />
-                <element signature="e#847#848#0" expanded="true" />
-                <element signature="e#915#916#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -52,8 +47,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="495" column="25" lean-forward="true" selection-start-line="495" selection-start-column="25" selection-end-line="495" selection-end-column="25" />
+            <state relative-caret-position="376">
+              <caret line="589" column="21" selection-start-line="589" selection-start-column="21" selection-end-line="589" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -92,6 +87,8 @@
       <find>rest_form</find>
       <find>reset_form</find>
       <find>empUpdateModal</find>
+      <find>del-id</find>
+      <find>check_item</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -121,8 +118,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/mapper/EmployeeMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/wang/crud/bean/Employee.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wang/crud/controller/EmployeeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wang/crud/service/EmployeeService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wang/crud/controller/EmployeeController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
       </list>
     </option>
@@ -161,8 +158,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="458" />
-    <option name="y" value="126" />
+    <option name="x" value="343" />
+    <option name="y" value="135" />
     <option name="width" value="1389" />
     <option name="height" value="890" />
   </component>
@@ -512,6 +509,7 @@
       <workItem from="1594041576693" duration="9415000" />
       <workItem from="1594116163301" duration="7773000" />
       <workItem from="1594132840993" duration="3046000" />
+      <workItem from="1594165908020" duration="3121000" />
     </task>
     <servers />
   </component>
@@ -548,10 +546,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61297000" />
+    <option name="totallyTimeSpent" value="64418000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="458" y="126" width="1389" height="890" extended-state="0" />
+    <frame x="343" y="135" width="1389" height="890" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.30850264" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -563,7 +561,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3852459" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3846154" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.52335167" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -573,7 +571,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32962137" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32924107" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.3282967" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" />
       <window_info anchor="bottom" id="Database Changes" order="14" />
       <window_info anchor="bottom" id="Version Control" order="15" />
@@ -870,13 +868,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wang/crud/controller/EmployeeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="156" column="28" selection-start-line="156" selection-start-column="28" selection-end-line="156" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wang/crud/bean/Employee.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -934,22 +925,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wang/crud/service/EmployeeService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="20" column="54" lean-forward="true" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
+        <state relative-caret-position="308">
+          <caret line="20" column="54" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#569#570#0" expanded="true" />
-            <element signature="e#625#626#0" expanded="true" />
-            <element signature="e#847#848#0" expanded="true" />
-            <element signature="e#915#916#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="17912" column="17" selection-start-line="17912" selection-start-column="17" selection-end-line="17912" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wang/crud/controller/EmployeeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="167" column="24" selection-start-line="167" selection-start-column="24" selection-end-line="167" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="495" column="25" lean-forward="true" selection-start-line="495" selection-start-column="25" selection-end-line="495" selection-end-column="25" />
+        <state relative-caret-position="376">
+          <caret line="589" column="21" selection-start-line="589" selection-start-column="21" selection-end-line="589" selection-end-column="21" />
         </state>
       </provider>
     </entry>
