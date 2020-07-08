@@ -44,6 +44,7 @@ public class EmployeeController {
         // 把分页查询数据放入到页面里面
         model.addAttribute("pageInfo", page);
 
+        // 跳转到 list.jsp 页面
         return "list";
     }
 
