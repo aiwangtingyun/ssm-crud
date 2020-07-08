@@ -96,9 +96,9 @@ public class EmployeeController {
     @PostMapping(value = "/checkuser")
     public Msg checkuser(@RequestParam("empName") String empName) {
         // 提示信息和前端保持一致，防止两次提示信息不一致
-        String regx = "(^[a-zA-Z0-9_-]{6,16}$)|(^[\\u2E80-\\u9FFF]{2,5})";
+        String regx = "(^[a-zA-Z0-9_-]{3,16}$)|(^[\\u2E80-\\u9FFF]{2,5})";
         if (!empName.matches(regx)) {
-            return Msg.failed().add("va_msg", "用户名必须是6-16位数字和字母的组合或者2-5位中文");
+            return Msg.failed().add("va_msg", "用户名必须是3-16位数字和字母的组合或者2-5位中文");
         }
 
         // 数据库用户名重复校验

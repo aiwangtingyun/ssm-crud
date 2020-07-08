@@ -8,8 +8,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8624ded2-654d-44f7-be3b-abd3aa333ecd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/crud/bean/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/crud/bean/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/crud/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/crud/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wang/crud/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wang/crud/service/EmployeeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -28,8 +29,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wang/crud/controller/EmployeeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3366">
-              <caret line="169" selection-start-line="169" selection-end-line="169" />
+            <state relative-caret-position="242">
+              <caret line="85" selection-start-line="85" selection-end-line="85" />
             </state>
           </provider>
         </entry>
@@ -37,13 +38,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="618" column="42" selection-start-line="618" selection-start-column="42" selection-end-line="618" selection-end-column="42" />
-              <folding>
-                <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#3;n#body#0;n#html#0;n#!!top" />
-              </folding>
+            <state relative-caret-position="308">
+              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="485">
+              <caret line="138" column="6" selection-start-line="138" selection-start-column="6" selection-end-line="138" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -62,7 +67,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>atguigu</find>
       <find>at</find>
       <find>atgui</find>
       <find>file</find>
@@ -89,6 +93,10 @@
       <find>modal(</find>
       <find>alear</find>
       <find>confirm_btn</find>
+      <find>6-16</find>
+      <find>3-16</find>
+      <find>前端校验</find>
+      <find>validate_add_form</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -117,9 +125,9 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/list.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/EmployeeMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wang/crud/service/EmployeeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wang/crud/bean/Employee.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wang/crud/controller/EmployeeController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wang/crud/service/EmployeeService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
       </list>
     </option>
@@ -163,7 +171,7 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="461" />
+    <option name="x" value="437" />
     <option name="y" value="129" />
     <option name="width" value="1389" />
     <option name="height" value="890" />
@@ -459,6 +467,7 @@
       <workItem from="1594172611211" duration="3121000" />
       <workItem from="1594177563606" duration="6010000" />
       <workItem from="1594190495104" duration="643000" />
+      <workItem from="1594196755653" duration="1143000" />
     </task>
     <servers />
   </component>
@@ -495,10 +504,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74192000" />
+    <option name="totallyTimeSpent" value="75335000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="461" y="129" width="1389" height="890" extended-state="0" />
+    <frame x="437" y="129" width="1389" height="890" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.30850264" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -861,13 +870,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="661">
-          <caret line="41" column="18" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/jquery-1.12.4.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -883,20 +885,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wang/crud/controller/EmployeeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3366">
-          <caret line="169" selection-start-line="169" selection-end-line="169" />
+        <state relative-caret-position="242">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="138" column="6" selection-start-line="138" selection-start-column="6" selection-end-line="138" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="618" column="42" selection-start-line="618" selection-start-column="42" selection-end-line="618" selection-end-column="42" />
-          <folding>
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" />
-          </folding>
+        <state relative-caret-position="308">
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
         </state>
       </provider>
     </entry>

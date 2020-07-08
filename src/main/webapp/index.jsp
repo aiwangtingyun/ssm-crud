@@ -467,10 +467,10 @@
         function validate_add_form() {
             // 校验姓名
             var empName = $("#empName_add_input").val();
-            var regName = /(^[a-zA-Z0-9_-]{6,16}$)|(^[\u2E80-\u9FFF]{2,5})/;
+            var regName = /(^[a-zA-Z0-9_-]{3,16}$)|(^[\u2E80-\u9FFF]{2,5})/;
             if (!regName.test(empName)){
-                // alert("用户名可以是2-5位中文或者6-16位英文和数字的组合");
-                show_valid_msg("#empName_add_input", "error", "用户名必须是6-16位数字和字母的组合或者2-5位中文");
+                // alert("用户名可以是2-5位中文或者3-16位英文和数字的组合");
+                show_valid_msg("#empName_add_input", "error", "用户名必须是3-16位数字和字母的组合或者2-5位中文");
                 return false;
             } else {
                 show_valid_msg("#empName_add_input", "success", "");
