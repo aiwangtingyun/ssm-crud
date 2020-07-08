@@ -23,68 +23,6 @@
 </head>
 <body>
 
-<!-- 员工修改的模态框 -->
-<div class="modal fade" id="empUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <%-- 模态框头部 --%>
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">员工修改</h4>
-            </div>
-            <%-- 模态框主体 --%>
-            <div class="modal-body">
-                <%-- 表单元素的 name 属性需要和 employee 对象的属性名相对应 --%>
-                <form class="form-horizontal">
-                    <%--员工姓名--%>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">empName</label>
-                        <div class="col-sm-10">
-                            <p class="form-control-static" id="empName_update_static"></p>
-                        </div>
-                    </div>
-                    <%--邮箱--%>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">email</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="email" class="form-control" id="email_update_input"
-                                   placeholder="email@google.com">
-                            <span class="help-block"></span> <%--校验提示信息--%>
-                        </div>
-                    </div>
-                    <%--性别--%>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">gender</label>
-                        <div class="col-sm-10">
-                            <label class="radio-inline">
-                                <input type="radio" name="gender" id="gender1_update_input" value="M" checked="checked">男
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="gender" id="gender2_update_input" value="F">女
-                            </label>
-                        </div>
-                    </div>
-                    <%--部门名--%>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">deptName</label>
-                        <div class="col-sm-4">
-                            <%--部门提交部门id即可--%>
-                            <select class="form-control" name="dId"></select>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <%-- 模态框底部 --%>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="emp_update_btn">更新</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- 员工添加的模态框 -->
 <div class="modal fade" id="empAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -149,6 +87,115 @@
     </div>
 </div>
 
+<!-- 员工修改的模态框 -->
+<div class="modal fade" id="empUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <%-- 模态框头部 --%>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">员工修改</h4>
+            </div>
+            <%-- 模态框主体 --%>
+            <div class="modal-body">
+                <%-- 表单元素的 name 属性需要和 employee 对象的属性名相对应 --%>
+                <form class="form-horizontal">
+                    <%--员工姓名--%>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">empName</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" id="empName_update_static"></p>
+                        </div>
+                    </div>
+                    <%--邮箱--%>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">email</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="email" class="form-control" id="email_update_input"
+                                   placeholder="email@google.com">
+                            <span class="help-block"></span> <%--校验提示信息--%>
+                        </div>
+                    </div>
+                    <%--性别--%>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">gender</label>
+                        <div class="col-sm-10">
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" id="gender1_update_input" value="M" checked="checked">男
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" id="gender2_update_input" value="F">女
+                            </label>
+                        </div>
+                    </div>
+                    <%--部门名--%>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">deptName</label>
+                        <div class="col-sm-4">
+                            <%--部门提交部门id即可--%>
+                            <select class="form-control" name="dId"></select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <%-- 模态框底部 --%>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="emp_update_btn">更新</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%-- 确认模态对话框 --%>
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <%-- 模态框头部 --%>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">员工删除</h4>
+            </div>
+            <%-- 模态框主体 --%>
+            <div class="modal-body">
+                <p id="confirm_msg" style="text-align: center; font-size: large;"></p>
+            </div>
+            <%-- 模态框底部 --%>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="confirm_btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%-- 提示模态框 --%>
+<div class="modal fade" id="tipModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <%-- 模态框头部 --%>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <%-- 模态框主体 --%>
+            <div class="modal-body">
+                <p id="tip_msg" style="text-align: center; font-size: medium;"></p>
+            </div>
+            <%-- 模态框底部 --%>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="tip_btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- 搭建显示页面 -->
 <div class="container">
     <%-- 标题 --%>
@@ -204,6 +251,7 @@
 
         var currentPage; // 当前页
         var totalRecord; // 总记录数
+        var delIds;      // 删除的ID
 
         // 页面加载完成后跳转到第一页
         $(function () {
@@ -248,7 +296,7 @@
                     .append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append("编辑");
                 editBtn.attr("edit-id", emp.empId); // 绑定按钮ID为员工ID
                 var delBtn = $("<button></button>").addClass("btn btn-danger btn-sm delete-btn")
-                    .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("编辑");
+                    .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("删除");
                 delBtn.attr("del-id", emp.empId);   // 绑定按钮ID为员工ID
                 var btnTd = $("<td></td>").append(editBtn).append(" ").append(delBtn);
 
@@ -478,7 +526,8 @@
             });
         });
 
-        // 由于按钮创建之前就绑定了click，所以绑定不上
+        // 绑定编辑按钮点击事件
+        // 问题：由于按钮创建之前就绑定了click，所以绑定不上
         // 解决办法为：1、在创建按钮的时候绑定；2、绑定点击 live()
         // jquery 新版没有 live，使用 on 进行替代
         $(document).on("click", ".edit-btn", function () {
@@ -537,28 +586,46 @@
             });
         });
 
-
         // 点击单个删除
         $(document).on("click", ".delete-btn", function () {
             // 弹出确认删除对话框
             var empName = $(this).parents("tr").find("td:eq(2)").text();
-            var empId = $(this).attr("del-id");
+            delIds = $(this).attr("del-id");
 
-            if (confirm("确认删除【"+ empName+"】?")){
-                // 发送 AJAX 请求删除数据
-                $.ajax({
-                    url: "${APP_PATH}/delete/" + empId,
-                    type: "DELETE",
-                    success: function (result) {
-                        alert(result.msg);
-                        // 返回本页
-                        toPage(currentPage);
-                    }
-                });
-            }
+            $("#confirm_msg").text("确认删除员工【"+ empName+"】?");
+            $("#confirmModal").modal({
+                backdrop: "static"
+            });
         });
 
-        // 全选框
+        // 批量删除
+        $("#emp_delete_all_btn").click(function () {
+            // 获取要删除的员工名和ID
+            var empNames = "";
+            delIds = "";
+            $.each($(".check_item:checked"), function () {
+                empNames += $(this).parents("tr").find("td:eq(2)").text() + "、";
+                delIds += $(this).parents("tr").find("td:eq(1)").text() + "-";
+            });
+            // 未选择则不做任何处理
+            if (empNames === "") {
+                $("#tip_msg").text("请选择要删除的员工！");
+                $("#tipModal").modal({
+                    backdrop: "staic"
+                });
+                return
+            }
+            // 去除多余的分割符
+            empNames = empNames.substring(0, empNames.length - 1);
+            delIds = delIds.substring(0, delIds.length - 1);
+
+            $("#confirm_msg").text("确认删除员工【"+ empNames +"】?");
+            $("#confirmModal").modal({
+                backdrop: "static"
+            });
+        });
+
+        // 全选框勾选事件
         $("#check_all").click(function () {
             // attr 获取 checked 是 undefined;
             // 我们这些 dom 原生的属性：attr 获取的是自定义属性的值；
@@ -566,29 +633,38 @@
             $(".check_item").prop("checked", $(this).prop("checked"));
         });
 
-        // 单个勾选框
+        // 单个勾选框勾选事件
         $(document).on("click", ".check_item", function () {
             // 判断当前选中元素是否为全部元素
             var flag = $(".check_item:checked").length === $(".check_item").length;
             $("#check_all").prop("checked", flag);
         });
 
-        // 批量删除
-        $("#emp_delete_all_btn").click(function () {
-            // 获取要删除的员工名和ID
-            var empNames = "";
-            var empIds = "";
-            $.each($(".check_item:checked"), function () {
-                empNames += $(this).parents("tr").find("td:eq(2)").text() + ",";
-                empIds += $(this).parents("tr").find("td:eq(1)").text() + "-";
+        // 确认删除模态框
+        $("#confirm_btn").click(function () {
+            // 发送 AJAX 请求批量删除
+            $.ajax({
+                url: "${APP_PATH}/delete/" + delIds,
+                type: "DELETE",
+                success: function (result) {
+                    // 隐藏模态框
+                    $("#confirmModal").modal("hide");
+                    // 提示处理结果
+                    $("#tip_msg").text(result.msg);
+                    $("#tipModal").modal({
+                        backdrop: "static"
+                    });
+                    // 回到当前页
+                    toPage(currentPage);
+                    // 细节：清除全选状态
+                    $("#check_all").prop("checked", false);
+                }
             });
-            // 去除多余的分割符
-            empNames = empNames.substring(0, empNames.length - 1);
-            empIds = empIds.substring(0, empIds.length - 1);
+        });
 
-            if(confirm("确认删除【"+empNames+"】吗？")){
-                // 发送
-            }
+        // 提示模态框
+        $("#tip_btn").click(function () {
+            $("#tipModal").modal("hide");
         });
 
     </script>

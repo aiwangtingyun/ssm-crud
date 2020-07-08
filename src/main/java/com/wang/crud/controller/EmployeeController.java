@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -159,12 +160,25 @@ public class EmployeeController {
     }
 
     /**
-     * 删除员工数据
+     * 删除员工数据，单个删除和批量删除二合一
+     * 单个删除参数："1"
+     * 批量删除参数："1-2-3"
      */
     @ResponseBody
-    @DeleteMapping(value = "/delete/{id}")
-    public Msg deleteEmp(@PathVariable("id") Integer id) {
-        employeeService.deleteEmp(id);
+    @DeleteMapping(value = "/delete/{ids}")
+    public Msg deleteEmp(@PathVariable("ids") String ids) {
+        if (ids.contains("-")) {
+            // 批量删除
+            String[] strIds = ids.split("-");
+            List<Integer> delIds = new ArrayList<>();
+            for (String id : strIds) {
+                delIds.add(Integer.parseInt(id));
+            }
+            employeeService.deleteBatch(delIds);
+        } else {
+            // 单个删除
+            employeeService.deleteEmp(Integer.parseInt(ids));
+        }
         return Msg.success();
     }
 }
